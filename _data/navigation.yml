@@ -1,12 +1,10 @@
 # main links
 main:
   - title: "About"
-    #url: #
+    url: /about/
   - title: "Posts"
-     #url: # https://mmistakes.github.io/minimal-mistakes/about/
+    url: /posts/
   - title: "Projects"
-     #url: #/year-archive/
-  - title: "Kaggle Competition"
-     #url: #/collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+    url: /projects/
+  - title: "Kaggle"
+    url: /terms/
