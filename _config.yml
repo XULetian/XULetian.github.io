@@ -17,7 +17,7 @@ minimal_mistakes_skin    : "dirt" # "air", "aqua", "contrast", "dark", "dirt", "
 # Site Settings
 locale                   : "en-US"
 title                    : "Marvin's Blog"
-title_separator          : " "
+title_separator          : #
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : #"Marvin Xu"
 description              : #"Dare to explore unknown but watch out the overfitting."
@@ -115,7 +115,7 @@ author:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: marvin_xu@hotmail.com
+      url: "mailto:marvin_xu@hotmail.com"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/XULetian/"
@@ -286,3 +286,11 @@ defaults:
       comments: # true
       share: true
       related: true
+
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
