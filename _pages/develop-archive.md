@@ -1,6 +1,6 @@
 ---
 title: "Development Posts"
 permalink: /develop/
-layout: tags
+layout: archive
 author_profile: true
 ---

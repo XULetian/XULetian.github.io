@@ -1,6 +1,6 @@
 ---
 title: "Machine Learning Posts"
 permalink: /ml/
-layout: tags
+layout: archive
 author_profile: true
 ---
