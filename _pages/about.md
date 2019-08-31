@@ -2,7 +2,7 @@
 title: "About"
 permalink: /about/
 header:
-  image: "/assets/images/data1.jpg"
+  image: "/assets/images/about.png"
 ---
 
 My name is Letian(Marvin) Xu, and a data science major graduate from DePaul University. Currently, I am seeking for a full-time job opportunity for data science, data analysis, data engineering, and database management area.
