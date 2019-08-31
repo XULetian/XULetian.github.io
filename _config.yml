@@ -113,9 +113,9 @@ author:
   location         : "Chicago, IL"
   email            :
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:marvin_xu@hotmail.com"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/letian-xu-56914a111/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/XULetian/"
