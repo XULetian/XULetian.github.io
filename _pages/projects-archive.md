@@ -5,7 +5,7 @@ permalink: /projects/
 author_profile: true
 feature_row:
   - image_path: /assets/images/gallery-image-1.png
-    title: "NLP To THE RESCUE"
+    title: "NLP TO THE RESCUE"
     excerpt: 'Using NLP approach to mining online reviews with Topic Modeling(LDA and ML). Datasets were from 6 months of Apple AppStore and Google Play Store reviews from all over the world.'
     url: "#test-link"
     btn_label: "Read More"
@@ -17,7 +17,7 @@ feature_row:
     btn_label: "Read More"
     btn_class: "btn--primary"
 ---
-
+{}
 {% include feature_row id="feature_row" type="left" %}
 
 <!-- {% include feature_row id="feature_row3" type="right" %}
