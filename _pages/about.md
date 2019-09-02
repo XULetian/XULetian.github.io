@@ -4,6 +4,7 @@ permalink: /about/
 header:
   image: "/assets/images/about.png"
 toc: true
+last_modified_at: 2019-09-02
 ---
 
 My name is Letian(Marvin) Xu, and a data science major graduate from DePaul University. Currently, I am seeking for a full-time job opportunity for data science, data analysis, data engineering, and database management area.
