@@ -3,6 +3,8 @@ layout: archive
 title: "All projects"
 permalink: /projects/
 author_profile: true
+header:
+  image: "assets/images/project.png"
 feature_row:
   - image_path: /assets/images/gallery-image-1.png
     title: "NLP TO THE RESCUE"
@@ -17,7 +19,7 @@ feature_row:
     btn_label: "Read More"
     btn_class: "btn--primary"
 ---
-{}
+
 {% include feature_row id="feature_row" type="left" %}
 
 <!-- {% include feature_row id="feature_row3" type="right" %}
