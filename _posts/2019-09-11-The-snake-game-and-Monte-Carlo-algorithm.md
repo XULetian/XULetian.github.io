@@ -1,6 +1,19 @@
+---
+title: "The snake game and Monte Carlo simulation"
+categories:
+  - Development
+tags:
+  - Monte Carlo Simulation
+  - Python
+---
+
 ### Problem Statement
 
 The snake is a one dimensional object of length 30cm. It moves at a speed of 1cm/second. It lives in a cage of 1000cm x 1000cm. The snake can only move horitontally or vertically. At random intervals (1 every 5 seconds in average) the snake can turn left or right. If the snake intersect itself, the snake bites itself and dies. The snake starts moving at the center of the cage. I bet $1000 that the snake will bite itself before it reaches the end of the cage. Is this a good bet? Explain.
+
+{% capture fig_img %}
+![Foo]({{ "/assets/images/snake-game.jpg" | relative_url }})
+{% endcapture %}
 
 ### Solution
 
@@ -8,13 +21,13 @@ Basically, this problem is trying to figure out what is the chance that this sna
 
 Since we can get the probability of the snake reaches the end of the cage before it bites itself, we can simply use the expectation value to explain whether is a good bet or not.
 
-#### Expectation value:
+### Expectation value:
 
 $E[x]$ = $\sum p(x) \cdot f(x)$
 
 $ = p($bites itself$) \times 1000 - p($reaches the edge$) \times 1000$
 
-#### Direction Object
+### Direction Object
 
 Before we create the snake object, I found out that I need to specified directions for the snake object. That will help us to use direction object to separate moving directions and turning directions later.
 
@@ -39,7 +52,7 @@ The four direction objects are using lambda to tell the snake how to move on the
 
 I use extend function to add two relative two directions in the end of self.direction list. So, the current snake object can always know what directions it can choose when the snake facing turnning point. We can move to create the body of snake.
 
-#### Snake Object
+### Snake Object
 
 ```python
 class snake():
@@ -87,7 +100,7 @@ def changeDir(self, dir):
 
 Since we already did direction object above, we can use it to change the current direction to relative right or left direction for the snake. In the directions list, there are two options, or relatvie directions to choose, for different moving directions, and we will use python provided random function to choose changing direction below.
 
-#### Simulation
+### Simulation
 
 After imitating the snake and controling the direction, at this step, we need some random number to tell the snake when it can change the direction. Then we need to do Monte Carlo simulation.
 
@@ -110,15 +123,15 @@ In the while loop of the simulation, we need a gap between two turning points, a
 
 From the exponential probability formula:
 
-#### $p(x) = \lambda \cdot e^{-\lambda x}$
+### $p(x) = \lambda \cdot e^{-\lambda x}$
 
 Cumulative Density Function will be:
 
-#### $F(x) = 1 - e^{-\lambda x}$
+### $F(x) = 1 - e^{-\lambda x}$
 
 So, we can get the inverted formula to get an exponential random value. This will be every gap distance that the snake move until next change direction(If we take F(x) as u):
 
-#### $x = -\frac{1}{\lambda} \cdot \ln u$
+### $x = -\frac{1}{\lambda} \cdot \ln u$
 
 Since the problem gives us that "At random intervals (1 every 5 seconds in average) the snake can turn left or right", we can find out that $\lambda$ = 0.2. Based on the exponential random value we got, we can know the time interval, which means how many centimeters that a snake moves on its speed until next change direction. 
 
@@ -126,7 +139,7 @@ At the same time, we also check whether the snake bites itself or reaches the ed
 
 This simulate function will keep repeating moving forward and changing direction until the snake bites itself or reaches the edge.
 
-#### Simulation Many
+### Simulation Many
 
 Theoretically, the snake do have the chance for reaching the edge before it bites itself, although the chance will be very small. If we imagine how the snake escape, for total distance is 500, and average gap is 5, the snake needs to make average 100 times changing direction, and every two same turning direction will make it harder to reach the edge. The most ideal way for the snake reach the edge is that the snake will make every changing direction are different with its last changing direction. So, it will be $\frac{1}{2^{100}}$ for the ideal chance. 
 
