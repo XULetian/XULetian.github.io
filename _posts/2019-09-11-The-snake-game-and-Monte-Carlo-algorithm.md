@@ -2,10 +2,18 @@
 title: "The snake game and Monte Carlo simulation"
 categories:
   - Development
+header:
+  overlay_image: "assets/images/post-develop.png"
+  excerpt: "Snake game stimulation with Monte Carlo algorithm, completed by Python."
+mathjax: "true"
 tags:
   - Monte Carlo Simulation
   - Python
 ---
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 ### Problem Statement
 
@@ -15,6 +23,11 @@ The snake is a one dimensional object of length 30cm. It moves at a speed of 1cm
 ![Foo]({{ "/assets/images/snake-game.jpg" | relative_url }})
 {% endcapture %}
 
+<figure>
+  {{ fig_img | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>Photo from Google.</figcaption>
+</figure>
+
 ### Solution
 
 Basically, this problem is trying to figure out what is the chance that this snake can reach the edge of cage without bites itself. Based on the bet, we know that higher the chance, worse the bet.
@@ -23,9 +36,9 @@ Since we can get the probability of the snake reaches the end of the cage before
 
 ### Expectation value:
 
-$E[x]$ = $\sum p(x) \cdot f(x)$
+$$ E[x]$ = $\sum p(x) \cdot f(x) $$
 
-$ = p($bites itself$) \times 1000 - p($reaches the edge$) \times 1000$
+$$ = p($bites itself$) \times 1000 - p($reaches the edge$) \times 1000 $$
 
 ### Direction Object
 
@@ -123,15 +136,15 @@ In the while loop of the simulation, we need a gap between two turning points, a
 
 From the exponential probability formula:
 
-### $p(x) = \lambda \cdot e^{-\lambda x}$
+### \\( p(x) = \lambda \cdot e^{-\lambda x} \\)
 
 Cumulative Density Function will be:
 
-### $F(x) = 1 - e^{-\lambda x}$
+### \\( F(x) = 1 - e^{-\lambda x} \\)
 
 So, we can get the inverted formula to get an exponential random value. This will be every gap distance that the snake move until next change direction(If we take F(x) as u):
 
-### $x = -\frac{1}{\lambda} \cdot \ln u$
+### \\( x = -\frac{1}{\lambda} \cdot \ln u \\)
 
 Since the problem gives us that "At random intervals (1 every 5 seconds in average) the snake can turn left or right", we can find out that $\lambda$ = 0.2. Based on the exponential random value we got, we can know the time interval, which means how many centimeters that a snake moves on its speed until next change direction. 
 
@@ -165,10 +178,10 @@ Then, for 100000 times simulation, the probability that the snake reaches the ed
 
 Based on that, we can get the expectation value:
 
-$p(x) = \sum p(x) \cdot f(x)$
+$$ p(x) = \sum p(x) \cdot f(x) $$
 
-$= 100\% \times 1000 - 0\% \times 1000$
+$$ = 100\% \times 1000 - 0\% \times 1000 $$
 
-$=1000$
+$$ =1000 $$
 
 It's a very good bet because you literally have zero chance to lose.
