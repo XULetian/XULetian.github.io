@@ -4,16 +4,13 @@ categories:
   - Development
 header:
   overlay_image: "assets/images/post-develop.png"
-  excerpt: "Snake game stimulation with Monte Carlo algorithm, completed by Python."
+  overlay_filter: 0.2
+excerpt: "Snake game stimulation with Monte Carlo algorithm, completed by Python."
 mathjax: "true"
 tags:
   - Monte Carlo Simulation
   - Python
 ---
-
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 ### Problem Statement
 
