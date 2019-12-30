@@ -1,11 +1,11 @@
 ---
-title: "LeetCode Log"
+title: "LeetCode Log: New 21 Game"
 categories:
   - Algorithm
 header:
   overlay_image: "assets/images/post-develop.png"
   overlay_filter: 0.2
-excerpt: "Solution and thoughts of problem on LeetCode step by step"
+excerpt: "Solution and thoughts of problem on LeetCode step by step."
 mathjax: "true"
 tags:
   - Java
@@ -52,3 +52,30 @@ Output: 0.73278
 
 ### Approach:
 
+```Python
+class Solution(object):
+    def new21Game(self, N, K, W):
+        """
+        :type N: int
+        :type K: int
+        :type W: int
+        :rtype: float
+        """
+        if K == 0: 
+            return 1
+        DP = [1.0] + [0]*N
+        mysum = 1.0
+        for i in range(1, N+1):
+            DP[i] = mysum/W
+            # the corresponding value in DP list is the probability when Alice got i points
+            if i < K:
+                mysum += DP[i]
+                # add up the previous probabilities before i is less than k
+            if 0 <= i - W < K:
+                mysum -= DP[i-W]
+                # this is the final situation, when i goes over K but not exceed the K plus W. 
+                # Since once go over K, Alice will stop draw. 
+                # So we nned to minus the probability of the most recent one, which is the points i minus W.
+                
+        return sum(DP[K:])
+```
