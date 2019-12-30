@@ -46,11 +46,20 @@ Input: N = 21, K = 17, W = 10
 Output: 0.73278
 ```
 
-### Methods
+### Methods:
 
+In this situation, the points will fall into three different ranges based on the requirement, and there will be different probability calculations for different points value. 
+
+Firstly, before the points go over the K, then what we need to do is got the probability of each value of points. We can easily store it in the list and update it. 
+
+Secondly, when the points go over the K but the maximum for the points will be K+W. However, the rules said once Alice reaches the K points, she will stop draw numbers. Then, the range for the second situation will be (K, K+W).
+
+Hence, points will not go over K+W, or equal to K+W either, the chance will 0%.
 
 
 ### Approach:
+
+#### Python
 
 ```Python
 class Solution(object):
