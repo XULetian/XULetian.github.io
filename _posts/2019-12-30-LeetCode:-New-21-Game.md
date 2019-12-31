@@ -61,7 +61,7 @@ Hence, points will not go over K+W, or equal to K+W either, the chance will 0%.
 
 #### Python
 
-```Python
+```python
 class Solution(object):
     def new21Game(self, N, K, W):
         """
