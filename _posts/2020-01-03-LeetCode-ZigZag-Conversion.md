@@ -14,48 +14,69 @@ tags:
 
 ### Problem Statement
 
-https://leetcode.com/problems/new-21-game/
+[LeetCode Link](https://leetcode.com/problems/zigzag-conversion/)
 
-Alice plays the following game, loosely based on the card game "21".
+The string ```"PAYPALISHIRING"``` is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 
-Alice starts with 0 points, and draws numbers while she has less than K points.  During each draw, she gains an integer number of points randomly from the range [1, W], where W is an integer.  Each draw is independent and the outcomes have equal probabilities.
+```
+P   A   H   N
+A P L S I I G
+Y   I   R
+```
+And then read line by line: ```"PAHNAPLSIIGYIR"```
 
-Alice stops drawing numbers when she gets K or more points.  What is the probability that she has N or less points?
+Write the code that will take a string and make this conversion given a number of rows:
+
+```
+string convert(string s, int numRows);
+```
 
 #### Example 1:
 
 ```
-Input: N = 10, K = 1, W = 10
-Output: 1.00000
-Explanation:  Alice gets a single card, then stops.
+Input: s = "PAYPALISHIRING", numRows = 3
+Output: "PAHNAPLSIIGYIR"
 ```
 
 #### Example 2:
 
 ```
-Input: N = 6, K = 1, W = 10
-Output: 0.60000
-Explanation:  Alice gets a single card, then stops.
-In 6 out of W = 10 possibilities, she is at or below N = 6 points.
-```
+Input: s = "PAYPALISHIRING", numRows = 4
+Output: "PINALSIGYAHRPI"
+Explanation:
 
-#### Example 3:
-
-```
-Input: N = 21, K = 17, W = 10
-Output: 0.73278
+P     I    N
+A   L S  I G
+Y A   H R
+P     I
 ```
 
 ### Methods:
 
-In this situation, the points will fall into three different ranges based on the requirement, and there will be different probability calculations for different points value. 
+第一行和最后一行都是一样的，有规律可循（ ```gap = 2*numRows - 2``` ），直接把等距离的index的string里面的东西拿出来就好了，麻烦一点的是中间行。
 
-Firstly, before the points go over the K, then what we need to do is got the probability of each value of points. We can easily store it in the list and update it. 
+中间行的关键在于要么是和gap余数为行数，要么加上行数能整除gap，找到这个规律就可以直接开写了。
 
-Secondly, when the points go over the K but the maximum for the points will be K+W. However, the rules said once Alice reaches the K points, she will stop draw numbers. Then, the range for the second situation will be (K, K+W).
+In the first row and the last row, it's easy to find the pattern with the index. Since their gap are the same( ```gap = 2*numRows - 2``` ), hence index modulo gap calculation euqal to 0 will be the condition for first row, and using index modulo gap to get euqal to the number of numRows minus 1 will be the condition for last row.
 
-Hence, points will not go over K+W, or equal to K+W either, the chance will 0%.
+For the row in the middle, they either modulo gap equals to number of rows or plus the number of rows will modulo gap = 0.
 
+When numRows equal to 3:
+
+```
+0	 	4	 	8	 	12
+1	3	5	7	9	11	13
+2	 	6	 	10	 	 
+```
+
+When numRows equal to 4:
+
+```
+0	 	 	6	 	 	12
+1	 	5	7	 	11	13
+2	4	 	8	10	 	 
+3	 	 	9	 	 	 
+```
 
 ### Approach:
 
@@ -63,28 +84,29 @@ Hence, points will not go over K+W, or equal to K+W either, the chance will 0%.
 
 ```python
 class Solution(object):
-    def new21Game(self, N, K, W):
+    def convert(self, s, numRows):
         """
-        :type N: int
-        :type K: int
-        :type W: int
-        :rtype: float
+        :type s: str
+        :type numRows: int
+        :rtype: str
         """
-        if K == 0: 
-            return 1
-        DP = [1.0] + [0]*N
-        mysum = 1.0
-        for i in range(1, N+1):
-            DP[i] = mysum/W
-            # the corresponding value in DP list is the probability when Alice got i points
-            if i < K:
-                mysum += DP[i]
-                # add up the previous probabilities before i is less than k
-            if 0 <= i - W < K:
-                mysum -= DP[i-W]
-                # this is the final situation, when i goes over K but not exceed the K plus W. 
-                # Since once go over K, Alice will stop draw. 
-                # So we nned to minus the probability of the most recent one, which is the points i minus W.
+        n = len(s)
+        if numRows == 1: return s
+        ans = []
+        gap = 2*numRows - 2
+        
+        for i in range(n):
+            if i%gap == 0: ans.append(s[i])
                 
-        return sum(DP[K:])
+        for row in range(1, numRows - 1):
+            for i in range(n):
+                if i%gap == row: 
+                    ans.append(s[i])
+                elif (i+row)%gap == 0:
+                    ans.append(s[i])
+                    
+        for i in range(n):
+            if i%gap == numRows - 1: ans.append(s[i])
+                
+        return ''.join(ans)
 ```
